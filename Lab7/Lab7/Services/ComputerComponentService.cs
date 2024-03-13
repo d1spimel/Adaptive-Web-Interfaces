@@ -9,42 +9,43 @@ namespace Lab7.Services
 
         public ComputerComponentService()
         {
-            // Пример инициализации списка комплектующих ПК
             _computerComponents = new List<ComputerComponent>
             {
                 new ComputerComponent { Id = 1, Brand = "Intel", Model = "Core i5", Processor = "Central Processing Unit", RAM = 8, StorageCapacity = 256, Price = 150 },
                 new ComputerComponent { Id = 2, Brand = "Nvidia", Model = "GeForce RTX 3080", Processor = "Graphics Processing Unit", RAM = 0, StorageCapacity = 0, Price = 300 },
                 new ComputerComponent { Id = 3, Brand = "Corsair", Model = "Vengeance LPX", Processor = "Random Access Memory", RAM = 16, StorageCapacity = 0, Price = 80 },
-                // Добавьте здесь остальные комплектующие ПК
+                new ComputerComponent { Id = 4, Brand = "Samsung", Model = "970 EVO Plus", Processor = "Solid State Drive", RAM = 0, StorageCapacity = 512, Price = 100 },
+                new ComputerComponent { Id = 5, Brand = "Seagate", Model = "BarraCuda", Processor = "Hard Disk Drive", RAM = 0, StorageCapacity = 2000, Price = 80 },
+                new ComputerComponent { Id = 6, Brand = "Asus", Model = "ROG Strix X570-E", Processor = "Motherboard", RAM = 0, StorageCapacity = 0, Price = 250 },
+                new ComputerComponent { Id = 7, Brand = "Cooler Master", Model = "Hyper 212 RGB", Processor = "CPU Cooler", RAM = 0, StorageCapacity = 0, Price = 50 },
+                new ComputerComponent { Id = 8, Brand = "EVGA", Model = "SuperNOVA 850 G5", Processor = "Power Supply Unit", RAM = 0, StorageCapacity = 0, Price = 150 },
+                new ComputerComponent { Id = 9, Brand = "Logitech", Model = "G502 Hero", Processor = "Gaming Mouse", RAM = 0, StorageCapacity = 0, Price = 60 },
+                new ComputerComponent { Id = 10, Brand = "Razer", Model = "BlackWidow Elite", Processor = "Gaming Keyboard", RAM = 0, StorageCapacity = 0, Price = 120 },
             };
         }
 
         public async Task<List<ComputerComponent>> GetComputerComponentsAsync()
         {
-            // Можно добавить логику для доступа к данным из базы данных или другого источника
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             return _computerComponents;
         }
 
         public async Task<ComputerComponent> GetComputerComponentByIdAsync(int id)
         {
-            // Можно добавить логику для доступа к данным из базы данных или другого источника
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             return _computerComponents.Find(component => component.Id == id);
         }
 
         public async Task AddComputerComponentAsync(ComputerComponent computerComponent)
         {
-            // Можно добавить логику для добавления компонента в базу данных или другое хранилище
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             computerComponent.Id = _computerComponents.Count + 1;
             _computerComponents.Add(computerComponent);
         }
 
         public async Task<ComputerComponent> UpdateComputerComponentAsync(int id, ComputerComponent computerComponent)
         {
-            // Можно добавить логику для обновления компонента в базе данных или другом хранилище
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             var existingComponent = _computerComponents.Find(component => component.Id == id);
             if (existingComponent != null)
             {
@@ -62,8 +63,7 @@ namespace Lab7.Services
 
         public async Task<ComputerComponent> DeleteComputerComponentAsync(int id)
         {
-            // Можно добавить логику для удаления компонента из базы данных или другого хранилища
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             var existingComponent = _computerComponents.Find(component => component.Id == id);
             if (existingComponent != null)
             {

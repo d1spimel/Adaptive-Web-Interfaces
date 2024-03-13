@@ -2,7 +2,6 @@
   "ExpandedNodes": [
     "",
     "\\Lab7",
-    "\\Lab7\\bin\\Release",
     "\\Lab7\\Controllers",
     "\\Lab7\\Models",
     "\\Lab7\\obj",
@@ -11,6 +10,6 @@
     "\\Lab7\\Services",
     "\\Lab7\\Services\\Interfaces"
   ],
-  "SelectedNode": "\\Lab7\\bin",
+  "SelectedNode": "\\Lab7\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

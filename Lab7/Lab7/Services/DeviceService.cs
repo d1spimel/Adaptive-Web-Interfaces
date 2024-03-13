@@ -10,41 +10,43 @@ namespace Lab7.Services
 
         public DeviceService()
         {
-            // Пример инициализации списка девайсов
             _devices = new List<Device>
             {
                 new Device { Id = 1, Name = "Smartphone", Type = "Mobile", Description = "Smartphone with latest features", Price = 800 },
                 new Device { Id = 2, Name = "Laptop", Type = "Portable", Description = "Powerful laptop for work and entertainment", Price = 1200 },
-                // Добавьте здесь остальные девайсы
+                new Device { Id = 3, Name = "Desktop Computer", Type = "Desktop", Description = "High-performance desktop computer", Price = 1500 },
+                new Device { Id = 4, Name = "Tablet", Type = "Mobile", Description = "Versatile tablet for productivity and entertainment", Price = 600 },
+                new Device { Id = 5, Name = "Smartwatch", Type = "Wearable", Description = "Feature-rich smartwatch for fitness and communication", Price = 300 },
+                new Device { Id = 6, Name = "Gaming Console", Type = "Entertainment", Description = "Next-generation gaming console for immersive gaming experiences", Price = 500 },
+                new Device { Id = 7, Name = "Wireless Headphones", Type = "Audio", Description = "High-quality wireless headphones for superior audio experience", Price = 200 },
+                new Device { Id = 8, Name = "Digital Camera", Type = "Photography", Description = "Professional digital camera for capturing stunning images", Price = 1500 },
+                new Device { Id = 9, Name = "External Hard Drive", Type = "Storage", Description = "Large-capacity external hard drive for data backup and storage", Price = 100 },
+                new Device { Id = 10, Name = "Fitness Tracker", Type = "Wearable", Description = "Fitness tracker to monitor physical activity and health metrics", Price = 100 },
             };
         }
 
         public async Task<List<Device>> GetDevicesAsync()
         {
-            // Можно добавить логику для доступа к данным из базы данных или другого источника
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             return _devices;
         }
 
         public async Task<Device> GetDeviceByIdAsync(int id)
         {
-            // Можно добавить логику для доступа к данным из базы данных или другого источника
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             return _devices.Find(device => device.Id == id);
         }
 
         public async Task AddDeviceAsync(Device device)
         {
-            // Можно добавить логику для добавления девайса в базу данных или другое хранилище
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             device.Id = _devices.Count + 1;
             _devices.Add(device);
         }
 
         public async Task<Device> UpdateDeviceAsync(int id, Device device)
         {
-            // Можно добавить логику для обновления девайса в базе данных или другом хранилище
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             var existingDevice = _devices.Find(d => d.Id == id);
             if (existingDevice != null)
             {
@@ -59,8 +61,7 @@ namespace Lab7.Services
 
         public async Task<Device> DeleteDeviceAsync(int id)
         {
-            // Можно добавить логику для удаления девайса из базы данных или другого хранилища
-            await Task.Delay(100); // Просто для имитации задержки
+            await Task.Delay(100);
             var existingDevice = _devices.Find(d => d.Id == id);
             if (existingDevice != null)
             {
