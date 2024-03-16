@@ -1,38 +1,38 @@
-using Lab7.Models; // Импорт пространства имен с моделями.
+using Lab7.Services; // Import namespace with services.
+using Lab7.Services.Interfaces; // Import namespace with service interfaces.
+using Microsoft.OpenApi.Models; // Import namespace with OpenAPI models.
 
-using Lab7.Services; // Импорт пространства имен с сервисами.
-using Lab7.Services.Interfaces; // Импорт пространства имен с интерфейсами сервисов.
-using Microsoft.OpenApi.Models; // Импорт пространства имен с моделями OpenAPI.
+var builder = WebApplication.CreateBuilder(args); // Creating a builder object to configure the web application.
 
-var builder = WebApplication.CreateBuilder(args); // Создание объекта builder для настройки веб-приложения.
+builder.Services.AddControllers(); // Adding controllers to the services collection.
 
-builder.Services.AddControllers(); // Добавление контроллеров в коллекцию сервисов.
+builder.Services.AddSingleton<IComputerComponentService, ComputerComponentService>(); // Adding the computer component service to the services collection as a singleton.
+builder.Services.AddSingleton<IComputerService, ComputerService>(); // Adding the computer service to the services collection as a singleton.
+builder.Services.AddSingleton<IDeviceService, DeviceService>(); // Adding the device service to the services collection as a singleton.
 
-builder.Services.AddSingleton<IComputerComponentService, ComputerComponentService>(); // Добавление сервиса компонентов компьютера в коллекцию сервисов как синглтон.
-builder.Services.AddSingleton<IComputerService, ComputerService>(); // Добавление сервиса компьютеров в коллекцию сервисов как синглтон.
-builder.Services.AddSingleton<IDeviceService, DeviceService>(); // Добавление сервиса устройств в коллекцию сервисов как синглтон.
+// Choosing a singleton is due to the need for shared data between different components of the application
+// and their single instance throughout the application lifecycle. This provides global access to data,
+// prevents redundant instance creation, and simplifies dependency management in the application.
 
-// Выбор синглтона обусловлен необходимостью общего использования данных между различными компонентами приложения
-// и их единственным экземпляром на протяжении жизненного цикла приложения. Это обеспечивает глобальный доступ к данным,
-// предотвращает избыточное создание экземпляров и упрощает управление зависимостями в приложении.
-
-builder.Services.AddEndpointsApiExplorer(); // Добавление API Explorer для обработки конечных точек API.
+builder.Services.AddEndpointsApiExplorer(); // Adding API Explorer for handling API endpoints.
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Computer WebAPI", Version = "v1" }); // Конфигурация Swagger с информацией о версии API.
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "Computer WebAPI", Version = "v1" }); // Configuring Swagger with API version information.
 });
 
-var app = builder.Build(); // Построение приложения на основе настроек.
+var app = builder.Build(); // Building the application based on the settings.
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) // Проверка, что приложение запущено в режиме разработки.
+if (app.Environment.IsDevelopment()) // Checking that the application is running in development mode.
 {
-    app.UseDeveloperExceptionPage(); // Использование страницы отображения исключений для разработки.
-    app.UseSwagger(); // Использование Swagger для генерации документации API.
-    app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "Computer WebAPI v1")); // Использование Swagger UI для визуализации документации API.
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI(options => {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Computer WebAPI v1");
+    });
 }
 
-app.UseHttpsRedirection(); // Использование перенаправления HTTPS.
-app.UseAuthorization(); // Использование авторизации.
-app.MapControllers(); // Отображение контроллеров.
-app.Run(); // Запуск приложения.
+app.UseHttpsRedirection(); // Using HTTPS redirection.
+app.UseAuthorization(); // Using authorization.
+app.MapControllers(); // Mapping controllers.
+app.Run(); // Running the application.
