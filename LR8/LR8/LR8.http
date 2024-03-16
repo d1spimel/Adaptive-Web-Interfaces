@@ -1,0 +1,6 @@
+@LR8_HostAddress = http://localhost:5039
+
+GET {{LR8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
